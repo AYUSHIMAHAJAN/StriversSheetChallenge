@@ -1,0 +1,21 @@
+Node * findIntersection(Node *firstHead, Node *secondHead)
+{
+    //Write your code here
+    unordered_map <Node*,int> hash;
+
+    Node *current=firstHead;
+    while(current!=NULL){
+        hash[current]=1;
+        current=current->next;
+    }
+
+
+    Node *temp=secondHead;
+    while(temp!=NULL){
+        if(hash.find(temp)!=hash.end()){
+            return temp;
+        }
+        temp=temp->next;
+    }
+     return NULL;
+}
