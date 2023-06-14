@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+int maximumProfit(vector<int> &prices){
+    // Write your code here.
+    int size=prices.size();
+
+    int *lmin=new int[size];
+    int *rmax=new int[size];
+
+    lmin[0]=prices[0];
+    rmax[size-1]=prices[size-1];
+
+    for(int i=1;i<size;i++){
+        lmin[i]=min(prices[i],lmin[i-1]);
+    }
+
+    for(int i=size-2;i>=0;i--){
+        rmax[i]=max(prices[i],rmax[i+1]);
+
+
+
+    }
+
+    int maxi=0;
+
+    for(int i=0;i<size;i++){
+        maxi=max(maxi,rmax[i]-lmin[i]);
+    }
+
+    return maxi;
+}
