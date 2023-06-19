@@ -1,0 +1,96 @@
+Node *reverse(Node *head) 
+{
+    // Write your code her
+    
+    Node* current=head;
+    Node* prev=NULL;
+    Node * next=NULL;
+    
+    while(current!=NULL){
+       
+       next=current->next;
+       current->next=prev;
+        prev=current;
+        current=next;
+    }
+    head=prev;
+
+     return head; 
+
+
+}
+Node *addTwoNumbers(Node *num1, Node *num2)
+{
+    // Write your code here.
+    // Node *head1=reverse(num1);
+    // Node *head2=reverse(num2);
+    Node *temp1=num1;
+    Node *temp2=num2;
+    
+    Node *fhead=NULL;
+    Node *ftail=NULL;
+    int carry=0;
+    int sum=0;
+    int remainder=0;
+    while(temp1!=NULL && temp2!=NULL){
+        int el1=temp1->data;
+        int el2=temp2->data;
+
+        sum=el1+el2+carry;
+        
+        remainder=sum%10;
+         Node*newnode=new Node(remainder);
+         if (temp1 == num1 && temp2 == num2) {
+             fhead = ftail = newnode;
+
+         }
+         else{
+             ftail->next=newnode;
+             ftail=ftail->next;
+         }
+
+        carry=sum/10;
+
+        temp1=temp1->next;
+        temp2=temp2->next;
+
+    }
+     if(temp1==NULL && temp2==NULL && carry>=1){
+        Node *newnode = new Node(carry);
+        ftail->next = newnode;
+        ftail = ftail->next;
+    }
+   
+    if(temp1!=NULL){
+
+      while (temp1 != NULL) {
+        int sum = carry + temp1->data;
+        remainder = sum % 10;
+        Node *newnode = new Node(remainder);
+        ftail->next = newnode;
+        ftail = ftail->next;
+
+        carry = sum / 10;
+
+        temp1 = temp1->next;
+      }
+    }
+
+    if(temp2!=NULL){
+         while (temp2!= NULL) {
+        int sum = carry + temp2->data;
+        remainder = sum % 10;
+        Node *newnode = new Node(remainder);
+        ftail->next = newnode;
+        ftail = ftail->next;
+
+        carry = sum / 10;
+
+        temp2 = temp2->next;
+      }
+    }
+    
+   
+    return fhead;
+
+}
