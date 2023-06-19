@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+
+int lengthOfLongestConsecutiveSequence(vector<int> &arr, int n) {
+    // Write your code here.
+    // sort(arr.begin(),arr.end());
+    // vector <int> dp(n,1);
+    // for(int i=0;i<n;i++){
+    //     for(int j=0;j<i;j++){
+    //         if(arr[i]==arr[j]+1 && dp[i]<dp[j]+1){
+    //             dp[i]=dp[j]+1;
+    //         }
+    //     }
+    // }
+
+    // int maxi=0;
+    // for(int i=0;i<n;i++){
+    //     maxi=max(maxi,dp[i]);
+    // }
+
+    // return maxi;
+     sort(arr.begin(),arr.end());
+      
+      int maxi=1;
+      int count=0;
+      int last_smaller=INT_MIN;
+      for(int i=0;i<n;i++){
+        
+              if(arr[i]-1==last_smaller){
+                  count++;
+                  last_smaller=arr[i];
+              }
+              else if(arr[i]!=last_smaller){
+                  count=1;
+                  last_smaller=arr[i];
+              }
+          
+          maxi=max(maxi,count);
+      }
+      
+      return maxi;
+}
