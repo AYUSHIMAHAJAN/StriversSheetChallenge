@@ -1,0 +1,33 @@
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &arr, int n)
+{
+    //  Write your code here.
+       int N=n;
+        int index1=-1;
+        
+        for(int i=N-1;i>=0;i--){
+            if(arr[i-1]<arr[i]){
+                index1=i-1;
+                break;
+            }
+        }
+        
+        int index=-1;
+        
+        for(int i=N-1;i>=0;i--){
+            if(arr[i]>arr[index1]){
+                index=i;
+                break;
+            }
+        }
+        if(index1!=-1 && index!=-1){
+          swap(arr[index1],arr[index]);
+          
+          reverse(arr.begin()+index1+1,arr.end());
+          
+         }
+         else{
+             sort(arr.begin(),arr.end());
+         }
+        return arr;
+}
